@@ -10,7 +10,7 @@ def gg_put_to_s3():
     while True:
         try:
             ret, frame = capture.read()
-            if not n < 900:
+            if not frame_count < 900:
                 break
             else:
                 frame_count = 0
