@@ -17,16 +17,15 @@ def gg_put_to_s3():
             else:
                 frame_count = 0
                 file_name = str(uuid.uuid4()) + ".png"
-                file_path = "/tmp/" + file_name
-                cv2.imwrite(file_path)
+                cv2.imwrite(file_name, frame)
             frame_count += 1
         except Exception as e:
             raise e
         finally:
-            if os.path.exists(file_path):
+            if os.path.exists(file_name):
                 s3_key = "/png/" + file_name
-                s3.meta.client.upload_file(file_path, "gg-png-119463424712", s3_key)
-                os.remove(file_path)
+                s3.meta.client.upload_file(file_name, "gg-png-119463424712", s3_key)
+                os.remove(file_name)
 
 gg_put_to_s3()
 
