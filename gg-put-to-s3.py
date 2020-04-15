@@ -16,8 +16,6 @@ def gg_put_to_s3():
         cv2.imwrite(file_name, frame)
         s3_key = "/png/" + file_name
         s3.meta.client.upload_file(file_name, "gg-png-119463424712", s3_key)
-    except Exception as e:
-        print(e)
     finally:
         if os.path.exists(file_name):
             os.remove(file_name)
